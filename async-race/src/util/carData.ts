@@ -27,8 +27,8 @@ export const brands: string[] = [
     'Suzuki',
     'Toyota',
     'UAZ',
-    'Volvo'
-]
+    'Volvo',
+];
 
 export const models: string[] = [
     'RDX',
@@ -59,5 +59,5 @@ export const models: string[] = [
     'Liana',
     'Camry',
     'Patriot',
-    'S80'
-]
+    'S80',
+];
