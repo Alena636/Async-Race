@@ -1,6 +1,6 @@
-import { createCarSvg } from "../util/carSVG";
-export const carView = (id: number, name: string, color: string) => 
-`<div class="car-container">
+import createCarSvg from '../util/carSVG';
+
+const carView = (id: number, name: string, color: string) => `<div class="car-container">
   <div class="car-options">
     <button class="button select" data-select=${id}>Select</button>
     <button class="button remove" data-remove=${id}>Remove</button>
@@ -15,3 +15,5 @@ export const carView = (id: number, name: string, color: string) =>
     <div class="flag"></div>
   </div>
 </div>`;
+
+export default carView;
