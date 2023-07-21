@@ -6,21 +6,8 @@ const headerView = `<header class="header">
   </ul>
 </div>
 <div class="logo">
-  <h1>Async Race</h1>
+  <h1>ASYNC RACE</h1>
 </div>
 </header>`;
-
-const toGarage = <HTMLElement>document.querySelector('.to_garage');
-const toWinners = <HTMLElement>document.querySelector('.to_winners');
-
-toGarage.addEventListener('click', () => {
-    toWinners.classList.add('hidden');
-    toGarage.classList.remove('hidden');
-});
-
-toWinners.addEventListener('click', () => {
-    toGarage.classList.add('hidden');
-    toWinners.classList.add('hidden');
-});
 
 export default headerView;

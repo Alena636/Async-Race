@@ -1,4 +1,4 @@
-const mainView = `<main class="page"
+const mainView = `<main class="page">
 <section id="garage-page">
 <div class="generate-car">
   <div class="create-field">
@@ -31,7 +31,7 @@ const mainView = `<main class="page"
 
 <div class="winner-message"></div>
 
-<section id="winners-page hidden">
+<section id="winners-page" class="hidden">
   <div class="winners-page-container">
     <h2 class="title">WINNERS <span class="count"></span></h2>
     <h3 class="title">Page #<span class="count-winners_page">1</span></h3>
@@ -57,6 +57,7 @@ const mainView = `<main class="page"
     <button class="button prev">PREV</button>
     <button class="button next">NEXT</button>
   </div>
-</section>`;
+</section>
+</main>`;
 
 export default mainView;

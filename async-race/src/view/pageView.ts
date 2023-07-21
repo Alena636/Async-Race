@@ -7,4 +7,5 @@ const pageView = () => {
   root.innerHTML = headerView + mainView + footerView;
   document.body.appendChild(root);
 };
+
 export default pageView;

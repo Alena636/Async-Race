@@ -1,7 +1,6 @@
-import createCarSvg from "../util/carSVG";
+import createCarSvg from '../util/carSVG';
 
-const winnerView = (num: number, color: string, name: string, wins:number, bestTime: number) =>
-`<tr">
+const winnerView = (num: number, color: string, name: string, wins:number, bestTime: number) => `<tr">
   <td>${num}</td>
   <td>${createCarSvg(color)}</td>
   <td>${name}</td>
