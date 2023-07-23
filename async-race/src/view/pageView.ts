@@ -8,4 +8,6 @@ const pageView = () => {
   document.body.appendChild(root);
 };
 
+pageView();
+
 export default pageView;

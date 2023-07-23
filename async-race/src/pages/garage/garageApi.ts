@@ -1,4 +1,4 @@
-import Methods from '../../types/types';
+import { Methods } from '../../types/types';
 
 export const base = 'http://127.0.0.1:3000';
 

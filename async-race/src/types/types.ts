@@ -1,4 +1,4 @@
-const enum Methods {
+export const enum Methods {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
@@ -6,4 +6,11 @@ const enum Methods {
   PATCH = 'PATCH',
 }
 
-export default Methods;
+export type CarDesc = {
+  [key: string | number]: number | string,
+  id: number,
+  name: string,
+  color: string,
+  wins: number,
+  time: number
+};
