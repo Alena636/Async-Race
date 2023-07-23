@@ -10,9 +10,11 @@ const carView = (id: number, name: string, color: string) => `<div class="car-co
     <button class="start" id="start-${id}" data-start=${id}>Start</button>
     <button class="stop" id="stop=${id}" data-stop=${id} disabled="true">Stop</button>
   </div>
-  <div class="car>
-    <div class="car-img" id="car-${id}" data-car=${id}>${createCarSvg(color)}</div>
-    <div class="flag"></div>
+  <div class="car">
+      <div class="car-img" id="car-${id}" data-car=${id}>${createCarSvg(color)}
+      </div>
+      <div class="flag">
+      </div>
   </div>
 </div>`;
 

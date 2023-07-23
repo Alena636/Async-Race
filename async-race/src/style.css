@@ -85,6 +85,10 @@ body {
     height: 100%;
 }
 
+.active {
+    background: linear-gradient(180deg, #ff3000, #ed0200, #ff096c, #d50082);
+}
+
 h1 {
     text-shadow:
     1px 1px 0 hsl(20,100%,50%),
@@ -164,6 +168,67 @@ h1 {
 
 .hidden {
     display: none;
+}
+
+.car-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.car-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 16px;
+    border-bottom: 5px dashed white;
+}
+
+.car-options {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.select,
+.remove {
+    width: 70px;
+}
+
+.start,
+.stop {
+    cursor: pointer;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    background: none;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    transition: all .6s;
+}
+
+.start:hover,
+.stop:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.car-svg {
+    width: 160px;
+}
+
+.car {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flag {
+    width: 50px;
+    height: 50px;
+    background-image: url(../src/assets/flagCar.svg);
 }
 
 footer {
