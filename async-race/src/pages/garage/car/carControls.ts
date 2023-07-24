@@ -92,4 +92,4 @@ generateCars.addEventListener('click', async () => {
     });
   }
   updateCars();
-})
+});
