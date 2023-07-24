@@ -1,5 +1,5 @@
 import { CarDesc } from '../../../types/types';
-import { driveEngine, startEngine } from '../engineApi';
+import { driveEngine, startEngine, stopEngine } from '../engineApi';
 // import { getCar } from '../garageApi';
 
 // const winnerMessage = <HTMLElement>document.querySelector('.winner-message');
@@ -59,8 +59,16 @@ const start = async (carId: number) => {
   });
 };
 
-document.addEventListener('click', async (ev) => {
-  const button = ev.target as HTMLElement;
+const stop = async (stopId: number) => {
+  stopEngine(stopId).then(() => {
+    window.cancelAnimationFrame(info[stopId].id);
+    const car = <HTMLElement>document.getElementById(`car-${stopId}`);
+    car.style.transform = 'translateX(0px)';
+  });
+};
+
+document.addEventListener('click', async (event) => {
+  const button = event.target as HTMLElement;
   if (button.classList.contains('start')) {
     const carId = Number(button.dataset.start);
     start(carId);
@@ -68,5 +76,14 @@ document.addEventListener('click', async (ev) => {
     const stopBtn = <HTMLButtonElement>document.getElementById(`stop-${carId}`);
     startBtn.setAttribute('disabled', 'disabled');
     stopBtn.removeAttribute('disabled');
+  }
+
+  if (button.classList.contains('stop')) {
+    const carId = Number(button.dataset.stop);
+    stop(carId);
+    const startBtn = <HTMLButtonElement>document.getElementById(`start-${carId}`);
+    const stopBtn = <HTMLButtonElement>document.getElementById(`stop-${carId}`);
+    stopBtn.setAttribute('disabled', 'disabled');
+    startBtn.removeAttribute('disabled');
   }
 });

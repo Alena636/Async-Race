@@ -1,7 +1,7 @@
 const footerView = `<footer>
     <div class="links-wrapper">
       <div class="github-link">
-        <a href="">Github</a>
+        <a class="github" href="https://github.com/Alena636">Github</a>
       </div>
       <p class="year">2023</p>
       <div class="rs-link">
