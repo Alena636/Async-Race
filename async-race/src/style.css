@@ -231,13 +231,31 @@ h1 {
     background-image: url(../src/assets/flagCar.svg);
 }
 
+.pagination {
+    padding: 16px 0px 16px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
 footer {
     max-width: 1280px;
     margin: 0 auto;
+    background-color: grey;
 }
 
 .links-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    padding: 10px;
+}
+
+.rs-logo {
+    padding: 10px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 50px;
+    background-image: url(../src/assets/logo-rsschool.svg);
 }
