@@ -79,3 +79,5 @@ createCarBtn.addEventListener('click', (ev) => {
     }
   }
 });
+
+// const generateCars = <HTMLButtonElement>document.querySelector('.generate');
