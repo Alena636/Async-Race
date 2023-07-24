@@ -4,6 +4,7 @@ import {
   countCars, createCar, deleteCar, getCar, getCars, updateCar,
 } from '../garageApi';
 import { generateRandomCar, generateRandomColor } from '../../../util/carRandom';
+import { reset } from './carEngine';
 
 const carWrapper = <HTMLElement>document.querySelector('.car-wrapper');
 const countGarage = <HTMLElement>document.querySelector('.count');
@@ -104,6 +105,7 @@ prev.addEventListener('click', () => {
     countPage.textContent = `${pageNum}`;
   }
   updateCars();
+  reset();
 });
 
 next.addEventListener('click', () => {
@@ -115,4 +117,5 @@ next.addEventListener('click', () => {
     countPage.textContent = `${pageNum}`;
   }
   updateCars();
+  reset();
 });

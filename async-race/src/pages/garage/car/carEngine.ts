@@ -1,21 +1,28 @@
 import { CarDesc } from '../../../types/types';
+import { pageNum } from './carControls';
 import { driveEngine, startEngine, stopEngine } from '../engineApi';
-// import { getCar } from '../garageApi';
+import { getCar, getCars } from '../garageApi';
 
-// const winnerMessage = <HTMLElement>document.querySelector('.winner-message');
-// function addWin(carWin: HTMLElement, timeWin: number) {
-//   const winId = Number(carWin.dataset.car);
-//   const time = (timeWin / 1000).toFixed(2);
-//   // const win = 1;
-//   let winName;
-//   getCar(winId).then((el) => {
-//     winName = el.name;
-//     winnerMessage.innerHTML = `${winName} went first (${time})!`;
-//   });
-// }
-
+const raceBtn = <HTMLButtonElement>document.querySelector('.race');
+const winnerMessage = <HTMLElement>document.querySelector('.winner-message');
+const controls = <HTMLElement>document.querySelector('.controls');
 const resetBtn = <HTMLButtonElement>document.querySelector('.reset');
-const raceRes: HTMLElement[] = [];
+let timeCar: number;
+const info: { [id: number] : CarDesc; } = {};
+
+function addWin(carWin: HTMLElement, timeWin: number) {
+  const winId = Number(carWin.dataset.car);
+  const time = (timeWin / 1000).toFixed(2);
+  // const win = 1;
+  let winName;
+  getCar(winId).then((el) => {
+    winName = el.name;
+    winnerMessage.innerHTML = `${winName} went first (${time})!`;
+  });
+  console.log('win');
+}
+
+let raceRes: HTMLElement[] = [];
 const animateCar = (car: HTMLElement, distance: number, duration: number) => {
   let startTime = 0;
   const animeId = <CarDesc>{};
@@ -31,7 +38,7 @@ const animateCar = (car: HTMLElement, distance: number, duration: number) => {
       animeId.id = window.requestAnimationFrame(getStep);
     }
     if (progress >= 1 && resetBtn.hasAttribute('disabled')) {
-    //   if (raceRes.length === 0) addWin(carEl, duration);
+      if (raceRes.length === 0) addWin(carEl, duration);
       raceRes.push(carEl);
     }
   }
@@ -39,18 +46,16 @@ const animateCar = (car: HTMLElement, distance: number, duration: number) => {
   return animeId;
 };
 
-let time: number;
-const info: { [id: number] : CarDesc; } = {};
 const start = async (carId: number) => {
   startEngine(carId).then((el) => {
     const velocity = Number(el.velocity);
     const distance = Number(el.distance);
-    time = distance / velocity;
+    timeCar = distance / velocity;
     const car = <HTMLElement>document.getElementById(`car-${carId}`);
-    const width = 1320;
+    const width = document.body.clientWidth - 80;
     const carPosition = (width / 100) * 15;
     const carDistance = width - carPosition;
-    info[carId] = animateCar(car, carDistance, time);
+    info[carId] = animateCar(car, carDistance, timeCar);
     driveEngine(carId).then((e) => {
       if (!e.success) {
         window.cancelAnimationFrame(info[carId].id);
@@ -59,7 +64,7 @@ const start = async (carId: number) => {
   });
 };
 
-const stop = async (stopId: number) => {
+export const stop = async (stopId: number) => {
   stopEngine(stopId).then(() => {
     window.cancelAnimationFrame(info[stopId].id);
     const car = <HTMLElement>document.getElementById(`car-${stopId}`);
@@ -85,5 +90,41 @@ document.addEventListener('click', async (event) => {
     const stopBtn = <HTMLButtonElement>document.getElementById(`stop-${carId}`);
     stopBtn.setAttribute('disabled', 'disabled');
     startBtn.removeAttribute('disabled');
+    winnerMessage.innerHTML = '';
+  }
+});
+
+export const startRace = async (page: number) => {
+  getCars(page, 7).then((arr: CarDesc[]) => arr.forEach((e) => start(e.id)));
+};
+
+export const stopRace = async (page: number) => {
+  getCars(page, 7).then((cars: CarDesc[]) => {
+    cars.forEach((el) => stop(el.id));
+  });
+  raceRes = [];
+  winnerMessage.innerHTML = '';
+};
+
+export function reset() {
+  if (!resetBtn.hasAttribute('disabled')) {
+    resetBtn.setAttribute('disabled', 'disabled');
+    raceBtn.removeAttribute('disabled');
+    raceRes = [];
+    winnerMessage.innerHTML = '';
+  }
+}
+
+controls.addEventListener('click', async (event) => {
+  const button = event.target as HTMLElement;
+  if (button.classList.contains('race')) {
+    startRace(pageNum);
+    raceBtn.setAttribute('disabled', 'disabled');
+    resetBtn.removeAttribute('disabled');
+  }
+  if (button.classList.contains('reset')) {
+    stopRace(pageNum);
+    resetBtn.setAttribute('disabled', 'disabled');
+    raceBtn.removeAttribute('disabled');
   }
 });
