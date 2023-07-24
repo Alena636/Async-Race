@@ -8,12 +8,12 @@ const mainView = `<main class="page">
   </div>
   <div class="update-field">
     <input class="generate-input_text text-update" type="text" disabled="true" placeholder="New car name is ...">
-    <input class="generate-input_color color-update" type="color" disabled="true">
+    <input class="generate-input_color color-update" type="color" disabled="true" value="#FFFFFF">
     <button class="button update" disabled="true">UPDATE</button>
   </div>
   <div class="controls">
     <button class="button race">RACE</button>
-    <button class="button reset">RESET</button>
+    <button class="button reset" disabled>RESET</button>
     <button class="button generate">GENERATE CARS</button>
   </div>
 </div>

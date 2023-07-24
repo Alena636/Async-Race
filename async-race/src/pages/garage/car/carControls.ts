@@ -84,12 +84,21 @@ createCarBtn.addEventListener('click', (ev) => {
 const generateCars = <HTMLButtonElement>document.querySelector('.generate');
 generateCars.addEventListener('click', async () => {
   for (let i = 0; i < 100; i += 1) {
-    const randomCar = generateRandomCar();
-    const randomColor = generateRandomColor();
     createCar({
-      name: `${randomCar}`,
-      color: `${randomColor}`,
+      name: generateRandomCar(),
+      color: `#${generateRandomColor()}`,
     });
   }
   updateCars();
 });
+
+// const resetBtn = <HTMLButtonElement>document.querySelector('.reset');
+// const raceBtn = <HTMLButtonElement>document.querySelector('.race');
+// function reset() {
+//   if (!resetBtn.hasAttribute('disabled')) {
+//     resetBtn.setAttribute('disabled', 'disabled');
+//     raceBtn.removeAttribute('disabled');
+//   }
+// }
+
+// reset();
