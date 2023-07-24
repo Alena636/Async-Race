@@ -215,6 +215,12 @@ h1 {
     background: rgba(255, 255, 255, .2);
 }
 
+.start:disabled,
+.stop:disabled {
+    background-color: rgba(172, 172, 172, .3);
+    cursor: auto;
+}
+
 .car-svg {
     width: 160px;
 }

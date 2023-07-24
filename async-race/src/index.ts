@@ -1,6 +1,7 @@
 import './view/pageView';
 import './style.css';
 import './pages/garage/car/carControls';
+import './pages/garage/car/carEngine';
 
 const toGarage = <HTMLElement>document.querySelector('.to_garage');
 const toWinners = <HTMLElement>document.querySelector('.to_winners');

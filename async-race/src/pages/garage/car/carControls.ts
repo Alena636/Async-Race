@@ -92,17 +92,6 @@ generateCars.addEventListener('click', async () => {
   updateCars();
 });
 
-// const resetBtn = <HTMLButtonElement>document.querySelector('.reset');
-// const raceBtn = <HTMLButtonElement>document.querySelector('.race');
-// function reset() {
-//   if (!resetBtn.hasAttribute('disabled')) {
-//     resetBtn.setAttribute('disabled', 'disabled');
-//     raceBtn.removeAttribute('disabled');
-//   }
-// }
-
-// reset();
-
 const prev = <HTMLButtonElement>document.querySelector('.prev');
 const next = <HTMLButtonElement>document.querySelector('.next');
 const countPage = <HTMLSpanElement>document.querySelector('.count-page');

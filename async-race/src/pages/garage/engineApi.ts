@@ -1,7 +1,7 @@
 import { base } from './garageApi';
 import { Methods } from '../../types/types';
 
-const engine = `&=${base}/engine`;
+const engine = `${base}/engine`;
 
 export const startEngine = async (id: number) => {
   const resp = await fetch(`${engine}?id=${id}&status=started`, { method: Methods.PATCH });
