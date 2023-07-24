@@ -2,8 +2,8 @@ const mainView = `<main class="page">
 <section id="garage-page">
 <div class="generate-car">
   <div class="create-field">
-    <input class="generate-input_text" type="text" placeholder="Car name is ..." autocomplete>
-    <input class="generate-input_color" type="color">
+    <input class="generate-input_text car-name" type="text" placeholder="Car name is ..." autocomplete>
+    <input class="generate-input_color car-color" type="color" value="#FFFFFF">
     <button class="button create">CREATE</button>
   </div>
   <div class="update-field">

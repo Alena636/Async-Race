@@ -1,7 +1,7 @@
 import carView from '../../../view/carView';
 import { CarDesc } from '../../../types/types';
 import {
-  countCars, deleteCar, getCar, getCars,
+  countCars, createCar, deleteCar, getCar, getCars, updateCar,
 } from '../garageApi';
 
 const carWrapper = <HTMLElement>document.querySelector('.car-wrapper');
@@ -37,10 +37,45 @@ document.addEventListener('click', async (ev) => {
       colorUpdateInput.value = el.color;
     });
   }
+  if (button.classList.contains('update')) {
+    const nameCarUpdate = textUpdateInput.value;
+    const colorCarUpdate = colorUpdateInput.value;
+    (updateCar({
+      name: nameCarUpdate,
+      color: colorCarUpdate,
+    }, carUpdateId)).then(() => updateCars());
+    textUpdateInput.value = '';
+    textUpdateInput.disabled = true;
+    colorUpdateInput.disabled = true;
+    updateBtn.disabled = true;
+  }
   if (button.classList.contains('remove')) {
     const id = Number(button.dataset.remove);
     deleteCar(id).then(() => updateCars());
 
     // winners
+  }
+});
+
+const createCarBtn = <HTMLButtonElement>document.querySelector('.create');
+const carName = <HTMLInputElement>document.querySelector('.car-name');
+const carColor = <HTMLInputElement>document.querySelector('.car-color');
+createCarBtn.addEventListener('click', (ev) => {
+  const button = ev.target as HTMLElement;
+  if (button.classList.contains('create')) {
+    const newCarName = carName.value;
+    const newCarColor = carColor.value;
+    if (newCarName === '') {
+      (createCar({
+        name: '',
+        color: carColor.value,
+      })).then(() => updateCars());
+    } else {
+      (createCar({
+        name: newCarName,
+        color: newCarColor,
+      })).then(() => updateCars());
+      carName.value = '';
+    }
   }
 });
