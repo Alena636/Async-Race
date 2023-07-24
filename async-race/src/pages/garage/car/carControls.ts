@@ -3,6 +3,7 @@ import { CarDesc } from '../../../types/types';
 import {
   countCars, createCar, deleteCar, getCar, getCars, updateCar,
 } from '../garageApi';
+import { generateRandomCar, generateRandomColor } from '../../../util/carRandom';
 
 const carWrapper = <HTMLElement>document.querySelector('.car-wrapper');
 const countGarage = <HTMLElement>document.querySelector('.count');
@@ -80,4 +81,15 @@ createCarBtn.addEventListener('click', (ev) => {
   }
 });
 
-// const generateCars = <HTMLButtonElement>document.querySelector('.generate');
+const generateCars = <HTMLButtonElement>document.querySelector('.generate');
+generateCars.addEventListener('click', async () => {
+  for (let i = 0; i < 100; i += 1) {
+    const randomCar = generateRandomCar();
+    const randomColor = generateRandomColor();
+    createCar({
+      name: `${randomCar}`,
+      color: `${randomColor}`,
+    });
+  }
+  updateCars();
+})
