@@ -11,7 +11,7 @@ const textUpdateInput = <HTMLInputElement>document.querySelector('.text-update')
 const colorUpdateInput = <HTMLInputElement>document.querySelector('.color-update');
 const updateBtn = <HTMLButtonElement>document.querySelector('.update');
 
-export const pageNum = 1;
+export let pageNum: number = 1;
 export const updateCars = (): void => {
   getCars(pageNum).then((arr: CarDesc[]) => {
     carWrapper.innerHTML = '';
@@ -102,3 +102,28 @@ generateCars.addEventListener('click', async () => {
 // }
 
 // reset();
+
+const prev = <HTMLButtonElement>document.querySelector('.prev');
+const next = <HTMLButtonElement>document.querySelector('.next');
+const countPage = <HTMLSpanElement>document.querySelector('.count-page');
+prev.addEventListener('click', () => {
+  if (pageNum === 1) {
+    prev.setAttribute('disabled', 'disabled');
+  } else {
+    next.removeAttribute('disabled');
+    pageNum -= 1;
+    countPage.textContent = `${pageNum}`;
+  }
+  updateCars();
+});
+
+next.addEventListener('click', () => {
+  if (pageNum * 7 >= countCars) {
+    next.setAttribute('disabled', 'disabled');
+  } else {
+    prev.removeAttribute('disabled');
+    pageNum += 1;
+    countPage.textContent = `${pageNum}`;
+  }
+  updateCars();
+});
