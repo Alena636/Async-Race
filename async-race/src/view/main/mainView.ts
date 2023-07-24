@@ -7,8 +7,8 @@ const mainView = `<main class="page">
     <button class="button create">CREATE</button>
   </div>
   <div class="update-field">
-    <input class="generate-input_text" type="text" disabled="true" placeholder="New car name is ...">
-    <input class="generate-input_color" type="color" disabled="true">
+    <input class="generate-input_text text-update" type="text" disabled="true" placeholder="New car name is ...">
+    <input class="generate-input_color color-update" type="color" disabled="true">
     <button class="button update" disabled="true">UPDATE</button>
   </div>
   <div class="controls">
