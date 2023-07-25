@@ -20,6 +20,10 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "import/no-cycle": "off",
+        "no-param-reassign": ["error", {
+            "props": false
+            }],
         "no-debugger": "off",
         "no-console": 0,
         "class-methods-use-this": "off",

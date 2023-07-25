@@ -23,17 +23,17 @@ const mainView = `<main class="page">
 
   <div class="car-wrapper"></div>
 </div>
-</section>
 <div class="pagination">
   <button class="button prev">PREV</button>
   <button class="button next">NEXT</button>
 </div>
+</section>
 
 <div class="winner-message"></div>
 
 <section id="winners-page" class="hidden">
   <div class="winners-page-container">
-    <h2 class="title">WINNERS <span class="count"></span></h2>
+    <h2 class="title">WINNERS <span class="count-winners"></span></h2>
     <h3 class="title">Page #<span class="count-winners_page">1</span></h3>
 
     <div class="winners-wrapper">
@@ -54,8 +54,8 @@ const mainView = `<main class="page">
   </div>
 
   <div class="pagination">
-    <button class="button prev">PREV</button>
-    <button class="button next">NEXT</button>
+    <button class="button prev-win">PREV</button>
+    <button class="button next-win">NEXT</button>
   </div>
 </section>
 </main>`;

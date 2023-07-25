@@ -98,6 +98,17 @@ h1 {
     6px 6px 0 hsl(45,100%,55%)
 }
 
+@media (max-width: 650px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .nav-list__link {
+        padding: 10px 20px;
+    }
+
+}
+
 .page {
     max-width: 1280px;
     margin: 0 auto;
@@ -237,6 +248,14 @@ h1 {
     background-image: url(../src/assets/flagCar.svg);
 }
 
+.winner-message {
+    position: absolute;
+    top: 50%;
+    right: 40%;
+    font-size: 32px;
+    font-weight: bold;
+}
+
 .pagination {
     padding: 16px 0px 16px 0px;
     display: flex;
@@ -246,6 +265,7 @@ h1 {
 }
 
 footer {
+    bottom: 0;
     max-width: 1280px;
     margin: 0 auto;
 }
@@ -268,4 +288,28 @@ footer {
     width: 50px;
     background-color: aliceblue;
     background-image: url(../src/assets/logo-rsschool.svg);
+}
+
+.winners-page-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 80vh;
+}
+
+.winners-wrapper {
+    padding-top: 20px;
+}
+
+.winners-table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+thead {
+    background-color: rgba(211, 211, 211, .2);
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px 12px;
 }

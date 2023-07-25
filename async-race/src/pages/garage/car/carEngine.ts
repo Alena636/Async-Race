@@ -2,49 +2,71 @@ import { CarDesc } from '../../../types/types';
 import { pageNum } from './carControls';
 import { driveEngine, startEngine, stopEngine } from '../engineApi';
 import { getCar, getCars } from '../garageApi';
+import { createWinner, getAllWinners, updateWinner } from '../../winners/winnersApi';
+import { updateWin } from '../../winners/winnersControl';
 
 const raceBtn = <HTMLButtonElement>document.querySelector('.race');
-const winnerMessage = <HTMLElement>document.querySelector('.winner-message');
+export const winnerMessage = <HTMLElement>document.querySelector('.winner-message');
 const controls = <HTMLElement>document.querySelector('.controls');
 const resetBtn = <HTMLButtonElement>document.querySelector('.reset');
+let raceRes: HTMLElement[] = [];
 let timeCar: number;
 const info: { [id: number] : CarDesc; } = {};
 
 function addWin(carWin: HTMLElement, timeWin: number) {
   const winId = Number(carWin.dataset.car);
-  const time = (timeWin / 1000).toFixed(2);
-  // const win = 1;
+  let timeC = (timeWin / 1000).toFixed(2);
   let winName;
+  let win = 1;
   getCar(winId).then((el) => {
     winName = el.name;
-    winnerMessage.innerHTML = `${winName} went first (${time})!`;
+    winnerMessage.innerHTML = `${winName} went first (${timeC})!`;
   });
-  console.log('win');
+  getAllWinners().then((el: CarDesc[]) => {
+    el.forEach((i) => {
+      if (Number(i.id) === winId) {
+        win = i.wins + 1;
+        timeC = (Number(i.time) < Number(timeC) ? i.time : timeC).toString();
+      }
+    });
+  }).then(() => {
+    if (win > 1) {
+      updateWinner({
+        wins: win,
+        time: timeC,
+      }, winId);
+    } else {
+      createWinner({
+        id: winId,
+        wins: win,
+        time: timeC,
+      });
+    }
+  }).then(() => updateWin());
+  console.log('helasf');
 }
 
-let raceRes: HTMLElement[] = [];
-const animateCar = (car: HTMLElement, distance: number, duration: number) => {
+function animateCar(car: HTMLElement, distance: number, duration: number) {
   let startTime = 0;
   const animeId = <CarDesc>{};
-  const carEl = car;
   function getStep(endTime: number) {
     if (!startTime) {
       startTime = endTime;
     }
     const progress: number = (endTime - startTime) / duration;
     const animation: number = progress * distance;
-    carEl.style.transform = `translateX(${animation}px)`;
+    car.style.transform = `translateX(${animation}px)`;
     if (progress < 1) {
       animeId.id = window.requestAnimationFrame(getStep);
     }
     if (progress >= 1 && resetBtn.hasAttribute('disabled')) {
-      if (raceRes.length === 0) addWin(carEl, duration);
-      raceRes.push(carEl);
+      if (raceRes.length === 0) addWin(car, duration);
+      raceRes.push(car);
     }
   }
   animeId.id = window.requestAnimationFrame(getStep);
   return animeId;
-};
+}
 
 const start = async (carId: number) => {
   startEngine(carId).then((el) => {
@@ -77,6 +99,7 @@ document.addEventListener('click', async (event) => {
   if (button.classList.contains('start')) {
     const carId = Number(button.dataset.start);
     start(carId);
+    winnerMessage.innerHTML = '';
     const startBtn = <HTMLButtonElement>document.getElementById(`start-${carId}`);
     const stopBtn = <HTMLButtonElement>document.getElementById(`stop-${carId}`);
     startBtn.setAttribute('disabled', 'disabled');
@@ -92,10 +115,14 @@ document.addEventListener('click', async (event) => {
     startBtn.removeAttribute('disabled');
     winnerMessage.innerHTML = '';
   }
+
+  if (button.classList.contains('to_winners')) {
+    winnerMessage.innerHTML = '';
+  }
 });
 
 export const startRace = async (page: number) => {
-  getCars(page, 7).then((arr: CarDesc[]) => arr.forEach((e) => start(e.id)));
+  getCars(page, 7).then((arr: CarDesc[]) => arr.forEach((el) => start(el.id)));
 };
 
 export const stopRace = async (page: number) => {

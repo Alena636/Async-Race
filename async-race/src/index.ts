@@ -1,7 +1,11 @@
 import './view/pageView';
 import './style.css';
+import './pages/garage/garageApi';
+import './pages/garage/engineApi';
+import './pages/winners/winnersApi';
 import './pages/garage/car/carControls';
 import './pages/garage/car/carEngine';
+import './pages/winners/winnersControl';
 
 const toGarage = <HTMLElement>document.querySelector('.to_garage');
 const toWinners = <HTMLElement>document.querySelector('.to_winners');
