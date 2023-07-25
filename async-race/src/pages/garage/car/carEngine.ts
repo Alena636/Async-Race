@@ -23,6 +23,7 @@ function addWin(carWin: HTMLElement, timeWin: number) {
     winnerMessage.innerHTML = `${winName} went first (${timeC})!`;
   });
   getAllWinners().then((el: CarDesc[]) => {
+    console.log(el);
     el.forEach((i) => {
       if (Number(i.id) === winId) {
         win = i.wins + 1;
@@ -43,7 +44,6 @@ function addWin(carWin: HTMLElement, timeWin: number) {
       });
     }
   }).then(() => updateWin());
-  console.log('helasf');
 }
 
 function animateCar(car: HTMLElement, distance: number, duration: number) {
@@ -61,7 +61,6 @@ function animateCar(car: HTMLElement, distance: number, duration: number) {
     }
     if (progress >= 1 && !resetBtn.hasAttribute('disabled')) {
       if (raceRes.length === 0) addWin(car, duration);
-      console.log('asff');
       raceRes.push(car);
     }
   }

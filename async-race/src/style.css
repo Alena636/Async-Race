@@ -313,3 +313,8 @@ thead {
 th, td {
     padding: 5px 12px;
 }
+
+.wins,
+.best-time {
+    cursor: pointer;
+}
