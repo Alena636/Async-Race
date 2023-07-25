@@ -59,8 +59,9 @@ function animateCar(car: HTMLElement, distance: number, duration: number) {
     if (progress < 1) {
       animeId.id = window.requestAnimationFrame(getStep);
     }
-    if (progress >= 1 && resetBtn.hasAttribute('disabled')) {
+    if (progress >= 1 && !resetBtn.hasAttribute('disabled')) {
       if (raceRes.length === 0) addWin(car, duration);
+      console.log('asff');
       raceRes.push(car);
     }
   }
