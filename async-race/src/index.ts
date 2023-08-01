@@ -25,5 +25,3 @@ toWinners.addEventListener('click', () => {
   toWinners.classList.toggle('active');
   toGarage.classList.remove('active');
 });
-
-console.log('Async-race');

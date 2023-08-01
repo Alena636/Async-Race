@@ -13,11 +13,11 @@ let raceRes: HTMLElement[] = [];
 let timeCar: number;
 const info: { [id: number] : CarDesc; } = {};
 
-function addWin(carWin: HTMLElement, timeWin: number) {
-  const winId = Number(carWin.dataset.car);
-  let timeC = (timeWin / 1000).toFixed(2);
-  let winName;
-  let win = 1;
+function addWin(carWin: HTMLElement, timeWin: number): void {
+  const winId: number = Number(carWin.dataset.car);
+  let timeC: string = (timeWin / 1000).toFixed(2);
+  let winName: string;
+  let win: number = 1;
   getCar(winId).then((el) => {
     winName = el.name;
     winnerMessage.innerHTML = `${winName} went first (${timeC})!`;
@@ -46,7 +46,7 @@ function addWin(carWin: HTMLElement, timeWin: number) {
   }).then(() => updateWin());
 }
 
-function animateCar(car: HTMLElement, distance: number, duration: number) {
+function animateCar(car: HTMLElement, distance: number, duration: number): CarDesc {
   let startTime = 0;
   const animeId = <CarDesc>{};
   function getStep(endTime: number) {
@@ -68,13 +68,13 @@ function animateCar(car: HTMLElement, distance: number, duration: number) {
   return animeId;
 }
 
-const start = async (carId: number) => {
+const start = async (carId: number): Promise<void> => {
   startEngine(carId).then((el) => {
-    const velocity = Number(el.velocity);
-    const distance = Number(el.distance);
+    const velocity: number = Number(el.velocity);
+    const distance: number = Number(el.distance);
     timeCar = distance / velocity;
     const car = <HTMLElement>document.getElementById(`car-${carId}`);
-    const width = document.body.clientWidth - 80;
+    const width: number = document.body.clientWidth - 80;
     const carPosition = (width / 100) * 15;
     const carDistance = width - carPosition;
     info[carId] = animateCar(car, carDistance, timeCar);
@@ -86,7 +86,7 @@ const start = async (carId: number) => {
   });
 };
 
-export const stop = async (stopId: number) => {
+export const stop = async (stopId: number): Promise<void> => {
   stopEngine(stopId).then(() => {
     window.cancelAnimationFrame(info[stopId].id);
     const car = <HTMLElement>document.getElementById(`car-${stopId}`);
@@ -133,7 +133,7 @@ export const stopRace = async (page: number) => {
   winnerMessage.innerHTML = '';
 };
 
-export function reset() {
+export function reset(): void {
   if (!resetBtn.hasAttribute('disabled')) {
     resetBtn.setAttribute('disabled', 'disabled');
     raceBtn.removeAttribute('disabled');
@@ -142,8 +142,9 @@ export function reset() {
   }
 }
 
+// const startBtn = <HTMLButtonElement>document.querySelector('.start');
 controls.addEventListener('click', async (event) => {
-  const button = event.target as HTMLElement;
+  const button: HTMLElement = <HTMLElement>event.target;
   if (button.classList.contains('race')) {
     startRace(pageNum);
     raceBtn.setAttribute('disabled', 'disabled');

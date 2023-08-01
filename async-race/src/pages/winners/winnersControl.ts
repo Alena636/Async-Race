@@ -18,7 +18,6 @@ export const updateWin = () => {
   let numWin = (pageNumWin * 10) - 10;
   getWinners(pageNumWin).then((el: CarDesc[]) => {
     tableBodyWin.innerHTML = '';
-    // el.sort((a, b) => b.wins - a.wins);
     el.forEach((car) => {
       let name = '';
       let color = '';
@@ -40,7 +39,6 @@ winsBtn.addEventListener('click', () => {
   let numWin = (pageNumWin * 10) - 10;
   getWinners(pageNumWin).then((el: CarDesc[]) => {
     tableBodyWin.innerHTML = '';
-    console.log(isAscSort);
     isAscSort = !isAscSort;
     if (isAscSort) {
       el.sort((a, b) => a.wins - b.wins);

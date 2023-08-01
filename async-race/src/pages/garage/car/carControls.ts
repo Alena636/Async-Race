@@ -34,7 +34,7 @@ updateCars();
 
 let carUpdateId: number;
 document.addEventListener('click', async (ev) => {
-  const button = ev.target as HTMLElement;
+  const button: HTMLElement = <HTMLElement>ev.target;
   if (button.classList.contains('select')) {
     carUpdateId = Number(button.dataset.select);
     colorUpdateInput.disabled = false;
@@ -98,7 +98,7 @@ const createCarBtn = <HTMLButtonElement>document.querySelector('.create');
 const carName = <HTMLInputElement>document.querySelector('.car-name');
 const carColor = <HTMLInputElement>document.querySelector('.car-color');
 createCarBtn.addEventListener('click', (ev) => {
-  const button = ev.target as HTMLElement;
+  const button: HTMLElement = <HTMLElement>ev.target;
   if (button.classList.contains('create')) {
     const newCarName = carName.value;
     const newCarColor = carColor.value;
